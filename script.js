@@ -5,12 +5,12 @@ const MAX = 50;                 // maks. box per menu
 const PAY_NO = '083141740173';  // ShopeePay
 const WA_NO = '6283141740173';  // WhatsApp (format 62…)
 const MENU = [
-  {id:'original',   name:'Original',   label:'Original',           price:10000, pcs:4, note:'4 donat / box',       dot:'#d9a066', rgb:'217,160,102', img:'assets/original.jpg'},
-  {id:'coklat',     name:'Coklat',     label:'Variant Coklat',     price:15000, pcs:4, note:'4 donat / box',       dot:'#6b3f2a', rgb:'107,63,42', img:'assets/coklat.jpg'},
-  {id:'strawberry', name:'Strawberry', label:'Variant Strawberry', price:15000, pcs:4, note:'4 donat / box',       dot:'#d4506c', rgb:'212,80,108', img:'assets/strawberry.jpg'},
-  {id:'blueberry',  name:'Blueberry',  label:'Variant Blueberry',  price:15000, pcs:4, note:'4 donat / box',       dot:'#5560b0', rgb:'85,96,176', img:'assets/blueberry.jpg'},
-  {id:'keju',       name:'Keju',       label:'Variant Keju',       price:15000, pcs:4, note:'4 donat / box',       dot:'#e3a82b', rgb:'227,168,43', img:'assets/keju.jpg'},
-  {id:'mix',        name:'Mix',        label:'Variant Mix',        price:15000, pcs:4, note:'4 donat campur rasa / box', dot:'conic-gradient(#6b3f2a,#d4506c,#5560b0,#e3a82b,#6b3f2a)', rgb:'150,100,90', img:'assets/mix.jpg'}
+  {id:'original',   name:'Original',   label:'Original',           price:12000, pcs:4, note:'4 donat / box',       dot:'#d9a066', rgb:'217,160,102', img:'assets/original.jpg'},
+  {id:'coklat',     name:'Coklat',     label:'Variant Coklat',     price:17000, pcs:4, note:'4 donat / box',       dot:'#6b3f2a', rgb:'107,63,42', img:'assets/coklat.jpg'},
+  {id:'strawberry', name:'Strawberry', label:'Variant Strawberry', price:17000, pcs:4, note:'4 donat / box',       dot:'#d4506c', rgb:'212,80,108', img:'assets/strawberry.jpg'},
+  {id:'blueberry',  name:'Blueberry',  label:'Variant Blueberry',  price:17000, pcs:4, note:'4 donat / box',       dot:'#5560b0', rgb:'85,96,176', img:'assets/blueberry.jpg'},
+  {id:'keju',       name:'Keju',       label:'Variant Keju',       price:17000, pcs:4, note:'4 donat / box',       dot:'#e3a82b', rgb:'227,168,43', img:'assets/keju.jpg'},
+  {id:'mix',        name:'Mix',        label:'Variant Mix',        price:17000, pcs:4, note:'4 donat campur rasa / box', dot:'conic-gradient(#6b3f2a,#d4506c,#5560b0,#e3a82b,#6b3f2a)', rgb:'150,100,90', img:'assets/mix.jpg'}
 ];
 /* Foto latar tiap menu ada di folder assets/ (ubah nama file pada img:'...' bila perlu) */
 /* ====================== */
@@ -20,6 +20,15 @@ const qty = {};
 MENU.forEach(m => qty[m.id] = 0);
 const $ = id => document.getElementById(id);
 const rp = n => 'Rp ' + n.toLocaleString('id-ID');
+
+/* Harga di header grup mengikuti data MENU, jadi tidak perlu diubah manual */
+(() => {
+  const og = MENU.find(m => m.id === 'original');
+  const vs = MENU.filter(m => m.id !== 'original').map(m => m.price);
+  const lo = Math.min(...vs), hi = Math.max(...vs);
+  $('origPrice').textContent = rp(og.price);
+  $('varPrice').textContent = lo === hi ? rp(lo) : rp(lo) + ' – ' + hi.toLocaleString('id-ID');
+})();
 const clean = s => s.replace(/\s+/g, ' ').trim();
 let toastTimer;
 
