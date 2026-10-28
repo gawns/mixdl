@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Milkluxe D’leche - Donat Preorder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+  <header>
+    <div class="kicker rise">Premium Donuts &amp; Sweet Delights</div>
+    <h1 class="rise" style="--d:.1s">Milkluxe <span>D’leche</span></h1>
+    <p class="tag rise" style="--d:.2s">Donat susu, dibuat sesuai pesanan.</p>
+    <div class="po rise" style="--d:.3s">
+      <span class="badge">Preorder</span>
+      <div>
+        <p>Pesanan diproses lewat preorder dan diantar pada jam tertentu. Jam antar kami konfirmasi lewat WhatsApp setelah pesananmu masuk.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="sec reveal" id="menu">
+    <h2 class="sh"><span class="num">01</span>Pilih donat</h2>
+    <div class="group">
+      <div class="ghead"><h3>Original</h3><div class="price">Rp 10.000 <small>/ box</small></div></div>
+      <p class="gdesc">1 box berisi 4 donat</p>
+      <div id="origList"></div>
+    </div>
+    <div class="group">
+      <div class="ghead"><h3>Variant</h3><div class="price">Rp 15.000 <small>/ box</small></div></div>
+      <p class="gdesc">1 box berisi 4 donat, satu rasa per box. Boleh pilih lebih dari satu rasa.</p>
+      <div id="varList"></div>
+    </div>
+  </section>
+
+  <form id="form" novalidate>
+    <section class="sec reveal" id="data">
+      <h2 class="sh"><span class="num">02</span>Data pemesan</h2>
+      <div class="field"><label for="fName">Nama</label><input id="fName" type="text" autocomplete="name" maxlength="60" placeholder="Nama lengkap"><span class="err" id="eName"></span></div>
+      <div class="field"><label for="fPhone">No. WhatsApp</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx"><span class="err" id="ePhone"></span></div>
+      <div class="field"><label for="fAddr">Alamat pengantaran</label><textarea id="fAddr" autocomplete="street-address" maxlength="200" placeholder="Jalan, nomor rumah, RT/RW, patokan"></textarea><span class="err" id="eAddr"></span><button class="locbtn" type="button" id="locBtn">📍 Gunakan lokasi saya</button><small class="lochint">Lokasi hanya dibaca di perangkatmu dan tidak disimpan atau diunggah ke database. Titik peta cuma ikut di teks pesanan WhatsApp yang kamu kirim sendiri.</small></div>
+      <div class="field"><label for="fNote">Catatan (opsional)</label><input id="fNote" type="text" maxlength="150" placeholder="Mis. komposisi rasa Mix, alergi, jumlah tamu"></div>
+    </section>
+
+    <section class="sec reveal" aria-labelledby="sumT">
+      <h2 class="sh" id="sumT"><span class="num">03</span>Ringkasan</h2>
+      <div id="summary" aria-live="polite">
+        <div id="sLines"></div>
+        <div class="col open" id="sEmpty"><div><div class="empty">Belum ada donat yang dipilih.</div></div></div>
+        <div class="col" id="sTot"><div><div class="stotal"><span>Total</span><b id="sumTotal">Rp 0</b></div><div class="smeta" id="sMeta"></div></div></div>
+      </div>
+    </section>
+
+    <section class="sec reveal" aria-labelledby="payT">
+      <h2 class="sh" id="payT"><span class="num">04</span>Pembayaran</h2>
+      <ol class="steps">
+        <li><span>Kirim pesanan lewat tombol di bawah. WhatsApp terbuka dengan pesanan yang sudah terisi.</span></li>
+        <li><span>Buka Shopee, DANA, OVO, GoPay, atau LinkAja, lalu scan QRIS atau transfer ke ShopeePay.</span></li>
+        <li><span>Bayar sesuai total pesanan.</span></li>
+        <li><span>Kirim screenshot bukti bayar di chat WhatsApp yang sama.</span></li>
+      </ol>
+      <div class="acc">
+        <div class="accrow"><div><small>ShopeePay &amp; konfirmasi WhatsApp</small><b>083141740173</b></div><button class="copy" type="button" data-copy="083141740173">Salin</button></div>
+        <div class="accrow"><div><small>Total yang dibayar</small><b id="payTotal">Rp 0</b></div><button class="copy" type="button" id="copyTotal">Salin</button></div>
+      </div>
+    </section>
+
+    <div class="reveal" style="margin-top:36px">
+      <button class="btn" type="submit">Kirim pesanan via WhatsApp</button>
+      <button class="btn ghost" type="button" id="copyMsg">Salin teks pesanan</button>
+    </div>
+  </form>
+
+  <footer class="foot reveal"><b>Milkluxe D’leche</b>Order &amp; info: 083141740173</footer>
+</main>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <div><span><b id="barTotal">Rp 0</b><small id="barInfo"></small></span><button class="btn" type="button" id="barBtn">Lanjut</button></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<a id="waLink" target="_blank" rel="noopener" hidden></a>
+
+<script src="script.js"></script>
+</body>
+</html>
